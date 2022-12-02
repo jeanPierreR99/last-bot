@@ -1,0 +1,168 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.n et/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="../css/menu-locales.css">
+    <title>ADM|Catalogo</title>
+
+</head>
+
+<body>
+    <section>
+        <div class="header">
+            <h4>Menu De Locales</h4>
+        </div>
+        <div class="conteiner1">
+            <form method="post" action="/admi/menCatalogo/saveCatalogo" enctype="multipart/form-data" class="form1"
+                id="formulario-registrar-pizza">
+                <div class="left">
+                    <h4>Nuevo Local</h4>
+                    <label for="message-text" class="col-form-label">ID</label>
+                    <input type="text" class="form-control text" id="id" name="id" value="loc-" required>
+                    <label for="message-text" class="col-form-label">Estado</label>
+                    <input type="text" class="form-control text" id="estado" name="estado" value="disponible" required>
+                    <label for="message-text" class="col-form-label">Precio</label>
+                    <input type="number" class="form-control text" id="precio" name="precio" required>
+                    <label for="message-text" class="col-form-label">Titulo</label>
+                    <input type="text" class="form-control text" id="titulo" name="titulo" required>
+                    <label for="message-text" class="col-form-label">Descripción</label>
+                    <textarea type="text" class="form-control text" id="desc" name="desc"
+                        style="height:36px" required></textarea>
+                    <label for="message-text" class="col-form-label">Latitud Map</label>
+                    <input type="text" class="form-control text" id="lat" name="lat" required>
+                    <label for="message-text" class="col-form-label">Longitud Map</label>
+                    <input type="text" class="form-control text" id="long" name="long" required>
+                    <label for="message-text" class="col-form-label">Dirección</label>
+                    <input type="text" class="form-control text" id="direccion" name="direccion" required>
+                    <label for="message-text" class="col-form-label">Area Terreno</label>
+                    <input type="text" class="form-control text" id="area" name="area" required>
+                    <label for="message-text" class="col-form-label">Portada 1</label>
+                    <input type="file" style="margin:10px 0px" id="imagen1" name="img_1"
+                        onchange="vista_previa1(event)" required>
+                    <label for="message-text" class="col-form-label">Portada 2</label>
+                    <input type="file" style="margin:10px 0px" id="imagen2" name="img_1"
+                        onchange="vista_previa2(event)" required>
+                    <label for="message-text" class="col-form-label">Portada 2</label>
+                    <input type="file" style="margin:10px 0px" id="imagen3" name="img_1"
+                        onchange="vista_previa3(event)" required>
+
+                    <button type="submit" class="btn"
+                        style="margin: 15px; background: #ff8311; color:rgb(218, 225, 228)"
+                        name="subir-pizza">agregar</button>
+                    <button type="reset" class="btn btn-danger" style="margin: 15px;">limpiar</button>
+                </div>
+                <div class="right">
+                    <h5>vista previa</h5>
+                    <div class="vista">
+                        <img id="visualizar1" src="/img/vista_previa.png">
+                        <img id="visualizar2" src="/img/vista_previa.png">
+                        <img id="visualizar3" src="/img/vista_previa.png">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive" style="margin:auto">
+            <h4>Locales Registrados</h4>
+            <table id="table-locales" class="table table-dark">
+
+                <thead>
+
+                    <tr>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">ID</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Estado</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Precio</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Titulo</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Descripcion</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Direccion</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Imagen1</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Imagen2</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">Image3</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <% for(var i=0; i < varResult.rowCount; i++){ if(varResult.rows[i].cat_loc_precio !=null){ %>
+                        <tr>
+                            <td style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_id; %>
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_estado; %>
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_precio; %>
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_titulo; %>
+                            </td>
+                            <td style="width: 220px; vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_desc; %>
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_dir; %>
+                            </td>
+                            <td>
+                                <img style="width: 80px; height: 80px; margin-right: 5px;"
+                                    src="/uploads/<%= varResult.rows[i].cat_loc_prin %>" alt="">
+                            </td>
+                            <td>
+                                <img style="width: 80px; height: 80px; margin-right: 5px;"
+                                    src="/uploads/<%= varResult.rows[i].cat_loc_sec %>" alt="">
+                            </td>
+                            <td>
+                                <img style="width: 80px; height: 80px; margin-right: 5px;"
+                                    src="/uploads/<%= varResult.rows[i].cat_loc_ter %>" alt="">
+                            </td>
+                            <td style="display: flex;flex-direction: column; justify-content: center; height: 100%;"><a
+                                    style="margin-top:10px; background:none;border:none;"><i class="bi bi-save"
+                                        style="font-size:20px;color: rgb(248, 184, 7)"></i></a><a href="/admi/menCatalogoLoc/<%= varResult.rows[i].cat_id %>"
+                                    style="background:none;border:none; margin-top: 10px;"><i class="bi bi-x-circle"
+                                        style="font-size:20px; color: rgb(248, 184, 7)"></i></a></td>
+                        </tr>
+                        <% } } %>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+    <script>
+        $(document).ready(function () {
+            $('#table-locales').DataTable({
+                "info": false
+            });
+        });
+    </script>
+
+    <script src="../js/visualizar.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        $("#imagen1").on("change", function () {
+            var imagen = $(this)[0].files[0];
+            console.log(imagen.name);
+        })
+    </script>
+</body>
+
+</html>

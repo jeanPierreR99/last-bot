@@ -1,0 +1,254 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    overflow: hidden;
+}
+*::selection{
+    background-color: rgb(255, 0, 60);
+}
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #696969;
+    border-radius: 20px;
+}
+
+body {
+
+}
+
+.conteiner {
+    background: #2b2e35;
+ 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.conteiner-primary {
+    width: 100%;
+    height: 100vh;
+}
+
+.conteiner-barra {
+    background: #3a4454;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 10px;
+    border-radius: 15px;
+
+}
+
+.conteiner-barra p {
+    color: #a9b8ce;
+    font-size: 14px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: auto;
+    margin-right: 10px;
+    text-transform: lowercase;
+}
+
+.conteiner-sidebar {
+    width: 310px;
+    overflow: auto;
+    border-radius: 20px;
+    margin: 10px 7px;
+    background: #3a4454;
+    user-select: none;
+}
+
+.conteiner-sidebar .navegacion-sidebar li {
+
+    text-align: center;
+}
+
+.titulo-sidebar {
+    width: 100%;
+    align-items: center;
+    height: 100px;
+}
+
+#icono-titulo {
+    color: rgb(204, 226, 228);
+    font-size: 50px;
+    text-shadow: none;
+}
+
+.titulo-sidebar span {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    display: flex;
+    color: rgb(204, 226, 228);
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    justify-content: center;
+}
+
+.titulo-sidebar span p {
+    text-decoration: none;
+    margin: 0px;
+    color: #ff00aa;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+.conteiner-sidebar .navegacion-sidebar li {
+    position: Relative;
+    display: flex;
+    cursor: pointer;
+  
+}
+
+.conteiner-sidebar .navegacion-sidebar li #icono {
+    font-size: 20px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.conteiner-sidebar .navegacion-sidebar li a {
+    text-decoration: none;
+    display: flex;
+    color: #7a8799;
+    width: 100%;
+    padding: 14px 0px;
+ 
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.conteiner-sidebar .navegacion-sidebar li a span {
+    font-size: 14px;
+    align-self: center;
+}
+.conteiner-sidebar .navegacion-sidebar li a:hover {
+    transition: all 0.7s ease;
+    background: rgba(49, 56, 63, 0.486);
+    color: #FF8311;
+    font-weight: 600;
+ }
+
+.conteiner-body {
+    margin: 8px 1px;
+    overflow: auto;
+    height: 100%;
+    background: #2C3440;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius:20px;
+}
+
+.conteiner-barra #home {
+    color: rgb(255, 16, 215);
+    font-size: 30px;
+    min-width: 50px;
+    cursor: pointer;
+    text-align: center;
+}
+.conteiner-barra #home:hover {
+    border-radius: 20px;
+    transition: all 0.7s ease;
+    background: #ff8311;
+    color:white;
+}
+.widget {
+    width: 33%;
+    margin: auto;
+    margin-top: 90px;
+    color: rgb(0, 0, 0);
+}
+
+.widget p {
+    display: inline-block;
+    line-height: 1em;
+}
+
+.fecha {
+    font-family: cursive;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: .5rem;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px rgb(226, 226, 226) solid;
+    user-select: none;
+}
+
+.salir {
+    position: absolute;
+    bottom: 10px;
+    left: 200px;
+    font-size: 30px;
+    color: white
+}
+
+.reloj {
+    font-family: cursive;
+    width: 100%;
+    padding: 20px;
+    font-size: 3.2em;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px rgb(226, 226, 226) solid;
+    user-select: none;
+}
+
+.reloj .caja-segundos {
+    display: inline-block;
+}
+
+.reloj .segundos,
+.reloj .ampm {
+    font-size: 1.5rem;
+    display: block;
+}
+
+@media screen and (max-width:1300px) {
+    .conteiner-primary {
+        width: 163%;
+    }
+
+    .salir {
+        left: 110px;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .widget {
+        width: 60%;
+    }
+    .titulo-sidebar{
+        height: 60px;
+    }
+    .titulo-sidebar span{
+        font-size: 20px;
+    }
+    .titulo-sidebar #icono-titulo{
+        font-size: 30px;
+    }
+    .titulo-sidebar span p {
+        font-size: 25px;
+    }
+    .conteiner-sidebar {
+        width: 400px;
+
+    }
+
+    .conteiner-primary {
+        width: 100%;
+    }
+}

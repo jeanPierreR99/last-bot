@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    height: 50px;
+    border-bottom-left-radius: 200px;
+    border-bottom-right-radius: 200px;
+    box-shadow: 2PX 2PX 5PX rgba(29, 29, 29, 0.534);
+    margin-bottom: 20px;
+}
+.header h4{
+    color: #ff00aa;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    height: 100%;
+    padding: 5px 0;
+}
+ 
+.table-responsive h4{
+    text-align: center;
+    color: #a9b8ce;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.table-responsive{
+    border-radius: 10px;
+    width:90%;
+    padding: 10px;
+    box-shadow: 2PX 3PX 6PX rgba(29, 29, 29, 0.418);
+}
+
+table{
+    width: 100%;
+    
+}
+.table>tbody>tr>td{
+  border : none;
+  text-align: center;
+  padding: 0px;
+  padding-top: 10px;
+}
+.table>thead>tr>th{
+  border-bottom:1px #a9b8ce solid;
+}
+table thead{
+    color: #a9b8ce;
+}
+table tbody tr td{
+    height: 10px;
+    color: #a9b8ce;
+    font-size: 12px;
+}
+.form-control {
+    background: #2C3440;
+    color: #a9b8ce;
+    border: none;
+    border-bottom:2px #a9b8ce solid;
+}
+.dataTables_filter{
+    color: #a9b8ce;
+}
+div.dataTables_wrapper div.dataTables_length label{
+    color: #a9b8ce;
+}
+.pagination>li:first-child>a, .pagination>li:first-child>span{
+    background: #2C3440;
+    border: none;
+    color: white;
+}
+.pagination>li>a, .pagination>li>span{
+    background: #2C3440;
+    color: white;
+    border: none;
+    border-radius: 20px;
+}
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover{
+    background: #2C3440;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+    background: #f319a0;
+    border: none;
+    border-radius: 20px;
+}
+table a:hover{
+    cursor: pointer;}
+section{
+    padding-bottom: 90px;
+}
+#iten2 {
+    color: #FF8311;
+    font-weight: 600;
+}
+@media screen and (max-width:800px) {
+    form{
+        width: 100%;
+        padding: 0 5px;
+    }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.n et/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="../css/menu-bot.css">
+
+    <title>ADM|BOT</title>
+</head>
+
+<body>
+
+    <section>
+        <div class="header">
+            <h4>Menu Bot</h4>
+        </div>
+        <form class="form" id="formulario-usuario" action="/admi/menBot/saveBot" method="post">
+            <h4>Nueva Frase</h4>
+            <label for="message-text" class="col-form-label">entrada</label>
+            <input type="text" class="form-control text" style="height: 36px;" id="input" name="input">
+            <label for="message-text" class="col-form-label">respuesta</label>
+            <input type="text" class="form-control text" style="height: 36px;" id="output" name="output">
+            <button type="submit" onclick="confirmar()" value="enviar" name="enviar" class="btn"
+                style="margin-top:10px; background: #ff8311; color:rgb(218, 225, 228)">agregar</button>
+            <button type="reset" class="btn btn-danger" style="margin-top:10px" name="agregar-palabra">limpiar</button>
+        </form>
+        <div class="table-responsive" style="margin:auto">
+            <h4>Frases Registradas</h4>
+            <table id="table-bot" class="table table-dark">
+
+                <thead>
+
+                    <tr>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center; width: 40px;">N°</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center; width: 200px;">ENTRADA</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center; width: 200px;">RESPUESTA</th>
+                        <th style="width: 40px;"></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <% for(var i=0; i < varResult.rowCount; i++){ %>
+                        <tr>
+                            <td>
+                                <%= i+1 %>
+                            </td>
+                            <td>
+                                <%= varResult.rows[i].input_bot; %>
+                            </td >
+                            <td style="width: 100px;">
+                                <%= varResult.rows[i].output_bot; %>
+                            </td>
+                            <td><a href="" style="background:none;border:none"><i class="bi bi-save" style="font-size:20px; margin-right: 10px;color: rgb(248, 184, 7)"></i></a><a href="/admi/menBot/<%= varResult.rows[i].id_bot; %>" style="background:none;border:none"><i class="bi bi-x-circle" style="font-size:20px; color: rgb(248, 184, 7)"></i></a></td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $('#table-bot').DataTable({
+                "info": false
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        function confirmar() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'agregado',
+                text:'nueva frase agregada',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        }
+    </script>
+</body>
+
+</html>

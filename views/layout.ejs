@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#3a4454">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<link rel="stylesheet" href="../css/admi.css">
+	<link rel="shortcut icon" href="../img/homepng.png">
+
+
+	<title>Bienes Raíces Picon | ADMI</title>
+</head>
+
+<body>
+	<section class="conteiner">
+
+		<div class="conteiner-sidebar" id="conteiner-sidebar">
+
+
+			<div class="titulo-sidebar">
+
+				<span id="titulo">
+					<i class="bi bi-building" id="icono-titulo"></i>
+					<p>BR</p> PICON
+				</span>
+			</div>
+
+			<div class="navegacion-sidebar">
+
+				<li>
+					<a id="iten1" class="url" href="/admi/menu-bot">
+						<i class="bi bi-robot" id="icono"></i>
+						<span> Bot</span>
+					</a>
+				</li>
+				<li>
+					<a id="iten2" class="url" href="/admi/menu-recientes">
+						<i class="bi bi-newspaper" id="icono"></i>
+						<span>Actividades Recientes</span>
+					</a>
+				</li>
+				<li>
+					<a id="iten3" class="url" style="margin-top: 20px" href="/admi/menu-locales">
+						<i class="bi bi-globe" id="icono"></i>
+						<span>Locales</span>
+					</a>
+				</li>
+				<li>
+					<a id="iten4" class="url" style="margin-bottom: 20px" href="/admi/menu-habitaciones">
+						<i class="bi bi-lamp" id="icono"></i>
+						<span>Habitaciones</span>
+					</a>
+				</li>
+				<li>
+					<a id="iten5" class="url" href="/admi/menu-gestiones">
+						<i class="bi bi-pen" id="icono"></i>
+						<span>Gestiones</span>
+					</a>
+				</li>
+				<li>
+					<a id="iten6" class="url" href="/admi/menu-movimientos">
+						<i class="bi bi-journal-text" id="icono"></i>
+						<span>Agenda</span>
+					</a>
+				</li>
+				<li>
+					<a id="iten7" class="url" href="/admi/menSalir">
+						<i class="bi bi-box-arrow-in-right" id="icono"></i>
+						<span>Cerrar sesión</span>
+					</a>
+				</li>
+			</div>
+		</div>
+
+		<div class="conteiner-primary" id="conteiner-primary">
+
+			<div class="conteiner-barra">
+
+				<i class="bi bi-list" id="home"></i>
+				
+			</div>
+
+			<div class="conteiner-body" id="conteiner-body">
+				<%-body%>
+			</div>
+		</div>
+	</section>
+	<script src="../js/rutas-admi.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+</body>
+
+</html>

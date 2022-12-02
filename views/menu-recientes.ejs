@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.n et/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="../css/menu-recientes.css">
+
+    <title>ADM|BOT</title>
+</head>
+
+<body>
+
+    <section>
+        <div class="header">
+            <h4>Menu De Actividades Recientes</h4>
+        </div>
+        <div class="table-responsive" style="margin:auto; margin-bottom: 30px;">
+            <h4>Solicitud de Registro De Local</h4>
+            <table id="table-loc" class="table table-dark">
+
+                <thead>
+
+                    <tr>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">NOMBRES</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">APELLIDOS</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">N° CONTACTO</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">ID LOC</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">PRECIO LOCAL</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">DIRECCION LOC</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">ESTADO</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">IMAGEN 1</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">FECHA</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <% for(var i=0; i < varResult.rowCount; i++){ if(varResult.rows[i].cat_loc_precio !=null){ %>
+                        <tr>
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].nombres; %>
+                            </td>
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].apellidos; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].telefono; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_id; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_precio; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_dir; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_loc_estado; %>
+                            </td >
+                            <td>
+                                <img style="width: 80px; height: 80px; margin-right: 5px;"
+                                    src="/uploads/<%= varResult.rows[i].cat_loc_prin %>" alt="">
+                            </td>
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].fecha; %>
+                            </td >
+                            <td style="display: flex;flex-direction: column; justify-content: center; height: 100%;"><a  href="/admi/menRecientes/<%= varResult.rows[i].reserva_id; %>"
+                                style="margin-top:10px; background:none;border:none;"><i class="bi bi-arrow-90deg-right"
+                                    style="font-size:20px;color: rgb(248, 184, 7)"></i></a><a href="/admi/menRecientesDelete/<%= varResult.rows[i].reserva_id; %>"
+                                style="background:none;border:none; margin-top: 10px;"><i class="bi bi-x-circle"
+                                    style="font-size:20px; color: rgb(248, 184, 7)"></i></a></td>
+                        </tr>
+                        <% } }%>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive" style="margin:auto">
+            <h4>Solicitud de Registro De Habitación</h4>
+            <table id="table-hab" class="table table-dark">
+
+                <thead>
+
+                    <tr>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">NOMBRES</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">APELLIDOS</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">N° CONTACTO</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">ID HAB</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">PRECIO HAB</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">DIRECCION HAB</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">ESTADO</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">IMAGEN 1</th>
+                        <th style="font-family:'Courier New', Courier, monospace; text-align:center">FECHA</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <% for(var i=0; i < varResult.rowCount; i++){ if(varResult.rows[i].cat_hab_precio !=null){ %>
+                        <tr>
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].nombres; %>
+                            </td>
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].apellidos; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].telefono; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_hab_id; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_hab_precio; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_hab_dir; %>
+                            </td >
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].cat_hab_estado; %>
+                            </td >
+                            <td>
+                                <img style="width: 80px; height: 80px; margin-right: 5px;"
+                                    src="/uploads/<%= varResult.rows[i].cat_hab_prin %>" alt="">
+                            </td>
+                            <td  style="vertical-align:middle;">
+                                <%= varResult.rows[i].fecha; %>
+                            </td >
+                            <td style="display: flex;flex-direction: column; justify-content: center; height: 100%;"><a href="/admi/menRecientes/<%= varResult.rows[i].reserva_id; %>"
+                                style="margin-top:10px; background:none;border:none;"><i class="bi bi-arrow-90deg-right"
+                                    style="font-size:20px;color: rgb(248, 184, 7)"></i></a><a href="/admi/menRecientesDelete/<%= varResult.rows[i].reserva_id; %>"
+                                style="background:none;border:none; margin-top: 10px;"><i class="bi bi-x-circle"
+                                    style="font-size:20px; color: rgb(248, 184, 7)"></i></a></td>
+                        </tr>
+                        <% } }%>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $('#table-loc').DataTable({
+                "info": false
+            });
+            $('#table-hab').DataTable({
+                "info": false
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        function confirmar() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'agregado',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+    </script>
+</body>
+
+</html>

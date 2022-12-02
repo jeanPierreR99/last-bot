@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Añadir una capa de datos a partir de una archivo externo</title>
+
+<!-- Se referencia la hoja de estilos de JavaScript -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+
+<!-- Se referencia el archivo JavaScript de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+<!-- Se referencian las hojas de estilos de la extensión Leaflet.markercluster -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.0/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.0/dist/MarkerCluster.Default.css" />
+
+<!-- Se referencia el archivo JavaScript de la extensión Leaflet.markercluster -->
+<script src="https://unpkg.com/leaflet.markercluster@1.4.0/dist/leaflet.markercluster.js"></script>
+
+<!-- Se referencia el archivo de datos externos -->
+<script src="bicycle-parkings.geojson"></script>
+
+<!-- Se establecen los estilos de ancho y alto del contenedor del mapa -->
+<style>
+#map {
+	width: 960px;
+	height:500px;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Se crea el elemento contenedor del mapa -->
+	<div id="map"></div>
+
+<script>
+
+	// Se crea un objeto mapa, se le asigna al elemento contenedor 'map' y se fijan su punto central y nivel de zum iniciales
+	var map = L.map('map').setView([36.722, -4.420], 15);
+
+	// Se añaden al objeto mapa las teselas de mapa a partir de OpenStreetMap y la información correspondiente de atribución 
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	attribution: 'Datos &copy; <a href="http://osm.org/copyright" target="blanck">Colaboradores de OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright" target="blanck">ODbL</a>) | Teselas <a href="https://github.com/gravitystorm/openstreetmap-carto" target="blanck">OSM Carto</a> &copy; Randy Allan y otros colaboradores (<a href="https://creativecommons.org/licenses/by-sa/2.0/deed.es" target="blanck">CC BY-SA 2.0</a>)'
+	}).addTo(map);
+
+	// Se crea un icono personalizado
+		var parkingIcon = L.icon({
+			iconUrl: 'bicycle-parking.svg',
+			iconSize: [20,20]
+			});;
+
+	// Se crea una capa de datos con marcadores y ventana emergente personalizados
+		var parkings = L.geoJson(data, {
+			pointToLayer: function(feature,latlng){
+			var marker = L.marker(latlng,{icon: parkingIcon});
+			marker.bindPopup("Capacidad: " + feature.properties.capacity);
+			return marker;
+			}});
+
+	// Se crea y añade una capa de agrupación de marcadores   		
+		var clusters = L.markerClusterGroup({ showCoverageOnHover: false });
+		clusters.addLayer(parkings);
+		map.addLayer(clusters); 
+		
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Document example</title>
+
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+section,
+figure {
+  display: grid;
+}
+
+body {
+  --fig-w: clamp(10em, 20vw, 25em);
+  --sel-r: calc(0.375 * var(--fig-w));
+  grid-template-rows: max-content 1fr;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: #262626;
+  font: 1em/1.25 courgette, z03, segoe script, cursive;
+  text-align: center;
+}
+body::before, body::after {
+  --i: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: var(--sel-r);
+  border-radius: 50%;
+  transform: translate(calc(var(--x, -200vw) - 50%), calc(var(--y, -200vh) - 50%));
+  box-shadow: 0 0 calc(var(--i) * 1em) lemonchiffon;
+  background: rgba(255, 255, 255, calc((1 - var(--i)) * 0.5));
+  mix-blend-mode: overlay;
+  content: "";
+}
+body::after {
+  --i: 1;
+}
+
+h3 {
+  color: #262626;
+  font-size: 3em;
+  line-height: 2;
+  letter-spacing: 3px;
+  text-shadow: 2px 0px #000, 1.4142135624px 1.4142135624px #000, 0px 2px #000, -1.4142135624px 1.4142135624px #000, -2px 0px #000, -1.4142135624px -1.4142135624px #000, 0px -2px #000, 1.4142135624px -1.4142135624px #000;
+}
+
+section {
+  grid-auto-flow: column;
+  place-content: center;
+  color: #fff;
+  filter: drop-shadow(2px 2px 5px #141414);
+}
+
+figure {
+  --sgn-di: clamp(-1, var(--di) / 0.001, 1);
+  --bit-di: calc(0.5 * (var(--sgn-di) + 1));
+  --abs-di: max(var(--di), -1 * var(--di));
+  --dif: calc((var(--n) - var(--abs-di, var(--n))) / var(--n));
+  --not-k: calc(var(--dif) * var(--dif) * var(--dif));
+  --k: calc(1 - var(--not-k));
+  --a: calc(0.39* var(--k) + (1 - 0.39));
+  width: var(--fig-w);
+  transform: perspective(25em) rotatey(calc(var(--di) * 3deg));
+  clip-path: inset(calc(var(--k) *13%) round 0.5em);
+}
+figure::before, figure::after,
+figure img,
+figure figcaption {
+  grid-area: 1/1;
+}
+figure::before, figure::after {
+  z-index: 2;
+  background: radial-gradient(circle at var(--x, -200vw) var(--y, -200vh), transparent calc(var(--sel-r) - 1px), rgba(38, 38, 38, var(--a)) var(--sel-r));
+  mix-blend-mode: saturation;
+  content: "";
+}
+figure::after {
+  mix-blend-mode: multiply;
+}
+
+img {
+  aspect-ratio: 5/9;
+  object-fit: cover;
+  width: 100%;
+  transform: scale(calc(1 - var(--k) *0.065)) translatey(calc(var(--k) * 0.5 *13%));
+}
+
+figcaption {
+  align-self: end;
+  z-index: 1;
+  margin: 0 13% 13%;
+  opacity: calc(var(--not-k));
+  background: linear-gradient(currentcolor 2px, transparent 0) calc((var(--bit-di) + var(--sgn-di)) * 100%) 0/calc(var(--not-k) * 100%) calc(100% - 2px) repeat-y rgba(0, 0, 0, 0.35);
+  line-height: 3;
+  text-shadow: 1px 1px #000;
+}
+    </style>
+</head>
+<body>
+  
+<h3>Spotlight</h3>
+<section style="--n: 5">
+  <figure style="--i: 0"><img src="https://images.unsplash.com/photo-1607528321467-d7b8ecc312dd?w=400"/>
+    <figcaption>going... down?</figcaption>
+  </figure>
+  <figure style="--i: 1"><img src="https://images.unsplash.com/photo-1589201300932-34103827a3ea?w=400"/>
+    <figcaption>the silent spy</figcaption>
+  </figure>
+  <figure style="--i: 2"><img src="https://images.unsplash.com/photo-1608196612328-122858fd3959?w=400"/>
+    <figcaption>choc box pretty</figcaption>
+  </figure>
+  <figure style="--i: 3"><img src="https://images.unsplash.com/photo-1605087610901-fe3ed05fc126?w=400"/>
+    <figcaption>dark clouds gather</figcaption>
+  </figure>
+  <figure style="--i: 4"><img src="https://images.unsplash.com/photo-1586115736639-998269e9436a?w=400"/>
+    <figcaption>deadly silence</figcaption>
+  </figure>
+</section>
+<script>
+  const _SEC = document.querySelector('section'),
+FIGS = [..._SEC.querySelectorAll('figure')].map((c, i) => ({ _el: c, i: i })),
+DIRS = { x: 'width', y: 'height' };
+
+let p = {},s = { x: 0, y: 0 };
+
+function setBox() {
+  FIGS.forEach(c => {
+    c.box = c._el.getBoundingClientRect();
+    c.mid = {
+      x: .5 * (c.box.left + c.box.right),
+      y: .5 * (c.box.top + c.box.bottom) };
+
+  });
+};
+
+setBox();
+
+addEventListener('resize', setBox);
+
+addEventListener('scroll', e => {
+  for (let a in DIRS) s[a] = window[`scroll${a.toUpperCase()}`];
+});
+
+addEventListener('mousemove', e => {
+  for (let a in DIRS) {
+    p[a] = e[`client${a.toUpperCase()}`];
+    document.body.style.setProperty(`--${a}`, `${+p[a].toFixed(2)}px`);
+  }
+
+  FIGS.forEach(c => {
+    for (let a in DIRS)
+    c._el.style.setProperty(`--${a}`, `${+((p[a] - c.box[a] + s[a]) / c.box[DIRS[a]] * 100).toFixed(2)}%`);
+    c._el.style.setProperty('--di', (p.x - c.mid.x) / c.box.width);
+  });
+});
+</script>
+    </body>
+</html>
