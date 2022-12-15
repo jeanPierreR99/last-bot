@@ -5,11 +5,11 @@ const fetch = require('node-fetch');
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 const pool = new Pool({
-    user: "tvjohsqnthxeko",
-    host: "ec2-3-217-251-77.compute-1.amazonaws.com",
-    database: "d16nt5ibvkp7b8",
-    password: "3573d1dbb8b0bd0d951e3e74b26e104bdadc1a9f58701de359e0f261a821f624",
-    port: 5432,
+    user: "postgres",
+    host: "containers-us-west-98.railway.app",
+    database: "railway",
+    password: "s3bfIypNitkXaIHxtj7j",
+    port: 6912,
     ssl: {
         rejectUnauthorized: false,
     }
